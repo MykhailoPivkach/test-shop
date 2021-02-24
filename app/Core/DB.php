@@ -56,5 +56,16 @@ class DB
             return false;
         }
     }
-   
+
+    public function deleteEntity(DbModelInterface $model)
+    {
+        $dbh = $this->getConnection();
+        $sql = sprintf("DELETE FROM %s WHERE %s = ?",
+            $model->getTableName(),
+            $model->getPrimaryKeyName()
+        );
+        $statement = $dbh->prepare($sql);
+
+        $statement->execute($model->getId());
+    }
 }

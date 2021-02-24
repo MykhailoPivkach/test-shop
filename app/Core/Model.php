@@ -4,9 +4,8 @@ namespace Core;
 /**
  * Class Model
  */
-class Model
+class Model implements DbModelInterface
 {
-
     /**
      * @var
      */
@@ -144,4 +143,18 @@ class Model
         return $values;
     }
 
+    public function getTableName(): string
+    {
+        return $this->table_name;
+    }
+
+    public function getPrimaryKeyName(): string
+    {
+        return $this->id_column;
+    }
+
+    public function getId()
+    {
+        return 1;
+    }
 }
