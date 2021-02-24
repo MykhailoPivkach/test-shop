@@ -4,4 +4,4 @@ session_start();
 require ROOT . '/app/Autoloader.php';
 require ROOT . '/app/etc/config.php'; 
 Autoloader::register();
-\core\App::run();
+\Core\App::run();
