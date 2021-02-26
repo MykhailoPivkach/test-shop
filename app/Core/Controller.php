@@ -10,8 +10,8 @@ class Controller
 
     public function __construct()
     {
-        $this->set('layoutPath', app::getLayoutDir() . DS. 'layout.php');
-        $this->set('menuPath', app::getViewDir() . DS. 'menu.php');
+        $this->set('layoutPath', App::getLayoutDir() . DS. 'layout.php');
+        $this->set('menuPath', App::getViewDir() . DS. 'menu.php');
     }
 
     protected function set($key, $value)
