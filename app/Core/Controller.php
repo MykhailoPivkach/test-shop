@@ -8,12 +8,10 @@ class Controller
 {
     protected $data = [];
 
-    public function __construct() {
-        $this->set('menu', $this->getMenu());
-    }
-    
-    public function getBP() {
-        return Route::getBP();      
+    public function __construct()
+    {
+        $this->set('layoutPath', app::getLayoutDir() . DS. 'layout.php');
+        $this->set('menuPath', app::getViewDir() . DS. 'menu.php');
     }
 
     protected function set($key, $value)
@@ -26,10 +24,18 @@ class Controller
         return $this->data[$key];
     }
 
-    public function renderLayout($contentPath = null)
+    public function renderLayout()
     {
-        $data = $this->data;
-        $view = new View($data, $contentPath);
+        $this->set('menuCollection',$this->getMenuCollection());
+        $menu =  new View($this->data, $this->get('menuPath'));
+
+        $content = new View($this->data);
+
+        $this->set('menu', $menu);
+        $this->set('content', $content);
+
+        $view = new View($this->data, $this->get('layoutPath'));
+
         return $view;
     }
 
@@ -47,7 +53,7 @@ class Controller
      /**
      * @return mixed
      */
-     private function getMenu()
+     private function getMenuCollection()
      {
         return $this->getModel('menu')
             ->initCollection()

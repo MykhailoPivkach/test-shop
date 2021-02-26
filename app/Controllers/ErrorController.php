@@ -13,9 +13,9 @@ class ErrorController extends Controller
      */
     public function error404Action()
     {
-        $this->set("title", "Test shop");
-        return $this->renderLayout('app/views/error/error404.php');
+        $this->set("title", "Error 404");
+        header("HTTP/1.0 404 Not Found");
+        return $this->renderLayout();
     }
-
 
 }

@@ -18,6 +18,12 @@ class App
     {
         return self::getAppDir() . DS . 'layouts';
     }
+
+    public static function getViewDir(): string
+    {
+        return self::getAppDir() . DS . 'views';
+    }
+
     /**
      *
      */
@@ -39,15 +45,9 @@ class App
 
         $result = $controller->$action();
         if ($result instanceof View) {
-            $data = $result->getData();
-            $data['content'] = $result;
-            $layout = $controllerClass === "\\Controllers\\ErrorController"
-                ? self::getLayoutDir() . DS. 'layout_404.php'
-                : self::getLayoutDir() . DS. 'layout.php';
-
-            // render default page layout
-            $pageView = new View($data, $layout);
-            echo $pageView->render();
+            echo $result->render();
+        } elseif (is_string($result)) {
+            echo $result;
         }
     }
 }

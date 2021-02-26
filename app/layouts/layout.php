@@ -15,7 +15,7 @@
         </div>
 
         <div id="header">
-            <?= $this->getBlock('menu')->render(); ?>
+            <?= $this->get('menu'); ?>
         </div>
         <div class="container">
             <?= $this->get('content'); ?>

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
     <?php 
-        foreach($this->get('menu') as $item)  :
+        foreach($this->get('menuCollection') as $item)  :
     ?>
         <li>
             <?= \Core\Url::getLink($item['path'], $item['name']); ?>
