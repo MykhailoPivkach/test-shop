@@ -15,7 +15,7 @@ class IndexController extends Controller
     public function indexAction()
     {
         $this->set("title", "Test shop");
-        return $this->renderLayout();
+        $this->renderLayout();
     }
 
     /**
@@ -24,7 +24,7 @@ class IndexController extends Controller
     public function testAction()
     {
         $this->set("title", "testAction");
-        return "hello from testAction";
+        echo "hello from testAction";
     }
 
 }

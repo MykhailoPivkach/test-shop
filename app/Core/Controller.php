@@ -36,7 +36,7 @@ class Controller
 
         $view = new View($this->data, $this->get('layoutPath'));
 
-        return $view;
+        echo $view->render();
     }
 
      /**
@@ -60,6 +60,11 @@ class Controller
             ->sort(array('sort_order'=>'ASC'))
             ->getCollection()
             ->select();
+     }
+
+     protected function forward($route)
+     {
+         App::run($route);
      }
     
 }

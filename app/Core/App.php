@@ -27,9 +27,9 @@ class App
     /**
      *
      */
-    public static function run(): void
+    public static function run(string $path = null): void
     {
-        Route::init();
+        Route::init($path);
 
         $controllerClass = '\\Controllers\\' . ucfirst(Route::getController()) . 'Controller';
         $controllerClassFile = self::getAppDir() . str_replace('\\', DS, $controllerClass) . '.php';
@@ -43,11 +43,6 @@ class App
             $action = 'error404Action';
         }
 
-        $result = $controller->$action();
-        if ($result instanceof View) {
-            echo $result->render();
-        } elseif (is_string($result)) {
-            echo $result;
-        }
+        $controller->$action();
     }
 }

@@ -39,13 +39,13 @@ class Route
     /**
      * @param $uri
      */
-    public static function init()
+    public static function init(string $route = null)
     {
-         // витягуємо маршрут із строки запроса
-         $request = explode('?', $_SERVER['REQUEST_URI']);
-         $uri = $request[0];
-
-         $route = substr($uri, strlen(self::getBasePath()));
+         if (!$route) {
+             $request = explode('?', $_SERVER['REQUEST_URI']);
+             $uri = $request[0];
+             $route = substr($uri, strlen(self::getBasePath()));
+         }
          $route_array = explode('/', $route);
          if ($route_array[0] === "") {
               array_shift($route_array);

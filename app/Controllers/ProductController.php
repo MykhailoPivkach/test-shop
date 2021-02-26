@@ -9,13 +9,9 @@ use Core\View;
  */
 class ProductController extends Controller
 {
-
-    /**
-     *
-     */
     public function indexAction()
     {
-        return $this->listAction();
+        $this->forward('product/list');
     }
 
     /**
@@ -32,7 +28,7 @@ class ProductController extends Controller
             ->select();
         $this->set('products', $products);
 
-        return $this->renderLayout();
+        $this->renderLayout();
     }
 
     /**
@@ -49,7 +45,7 @@ class ProductController extends Controller
             ->selectFirst();
         $this->set('products', $product);
 
-        return $this->renderLayout();
+        $this->renderLayout();
     }
 
     /**
@@ -68,7 +64,7 @@ class ProductController extends Controller
         }
         $this->set('product', $model->getItem($this->getId()));
 
-        return $this->renderLayout();
+        $this->renderLayout();
     }
 
     /**
@@ -82,7 +78,7 @@ class ProductController extends Controller
         if ($values = $model->getPostValues()) {
             $model->addItem($values);
         }
-        return $this->renderLayout();
+        $this->renderLayout();
     }
 
     /**
